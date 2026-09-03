@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación | Nómadas Digitales Academy</title>
+<meta name="description" content="Programas de formación en Gestión de Restaurantes e IA, Marketing Digital y CRM para profesionales del sector hostelero y empresarial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f5f2eb;
+    --paper-dark: #ede9df;
+    --accent: #1a3a2a;
+    --accent-light: #2d6147;
+    --gold: #b8924a;
+    --gold-light: #d4aa6a;
+    --muted: #6b6760;
+    --border: rgba(14,14,14,0.12);
+    --radius: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,242,235,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 8px 20px;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--paper); }
+
+  /* HERO FORMACIÓN */
+  .hero-formacion {
+    padding: 140px 80px 80px;
+    text-align: center;
+    background: var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-formacion::before {
+    content: '§';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 500px;
+    color: rgba(255,255,255,0.03);
+    right: -80px;
+    bottom: -120px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--gold-light);
+  }
+  .hero-tag::after {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--gold-light);
+  }
+
+  .hero-formacion h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero-formacion h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-formacion p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* PROGRAMAS */
+  .programas {
+    padding: 80px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  /* CARD PROGRAMA */
+  .programa-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    transition: box-shadow 0.3s;
+  }
+  .programa-card:hover {
+    box-shadow: 0 8px 40px rgba(26,58,42,0.1);
+  }
+
+  .card-header {
+    background: var(--accent);
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-header.gold-variant {
+    background: linear-gradient(135deg, #1a3a2a 0%, #2d6147 100%);
+  }
+
+  .card-header::after {
+    content: attr(data-num);
+    position: absolute;
+    right: 24px;
+    bottom: -20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+
+  .card-num {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .card-tag {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+  }
+
+  .card-body {
+    padding: 36px 40px;
+  }
+
+  .card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .meta-item {}
+  .meta-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .meta-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .card-modulos-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .modulo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .modulo-item:last-child { border-bottom: none; }
+
+  .modulo-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    color: var(--gold);
+    min-width: 20px;
+    padding-top: 2px;
+    font-style: italic;
+  }
+
+  .modulo-text {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* CTA CARD */
+  .card-cta {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .plaza-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,146,74,0.1);
+    border: 1px solid rgba(184,146,74,0.25);
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+  .plaza-badge::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .form-field {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 10px;
+  }
+  .form-field::placeholder { color: #bbb; }
+  .form-field:focus { border-color: var(--accent); background: white; }
+
+  .form-btn {
+    width: 100%;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .form-btn:hover { background: var(--accent-light); }
+
+  .form-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  .success-msg {
+    display: none;
+    background: rgba(45,97,71,0.08);
+    border: 1px solid rgba(45,97,71,0.2);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  /* PARA QUIÉN */
+  .para-quien {
+    background: var(--paper-dark);
+    padding: 80px 80px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+    margin-bottom: 48px;
+    max-width: 500px;
+  }
+
+  .perfiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .perfil-item {
+    padding: 28px;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .perfil-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .perfil-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .perfil-text {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* METODOLOGÍA */
+  .metodologia {
+    padding: 80px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .metodo-list {
+    list-style: none;
+    margin-top: 24px;
+  }
+
+  .metodo-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .metodo-item:last-child { border-bottom: none; }
+
+  .metodo-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .metodo-content strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .metodo-content span {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .metodo-right {
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metodo-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(184,146,74,0.1);
+  }
+
+  .metodo-stat {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .metodo-stat:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .metodo-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .metodo-stat-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 80px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--paper-dark);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-legal {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-formacion { padding: 120px 24px 60px; }
+    .programas { grid-template-columns: 1fr; padding: 40px 24px; }
+    .para-quien { padding: 60px 24px; }
+    .perfiles { grid-template-columns: 1fr; gap: 16px; }
+    .metodologia { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    footer { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Nómadas Digitales Academy</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="#programas">Programas</a></li>
+    <li><a href="#metodologia">Metodología</a></li>
+  </ul>
+  <a href="#programas" class="nav-cta">Ver programas</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero-formacion">
+  <p class="hero-tag">Programas de Formación</p>
+  <h1>Formación <em>práctica</em><br>para profesionales<br>que quieren más</h1>
+  <p>Programas intensivos diseñados para hosteleros, empresarios y empleados que quieren profesionalizar su gestión y dominar las herramientas digitales del futuro.</p>
+</section>
+
+<!-- PROGRAMAS -->
+<section class="programas" id="programas">
+
+  <!-- PROGRAMA 1 -->
+  <div class="programa-card">
+    <div class="card-header" data-num="01">
+      <p class="card-num">Programa 01</p>
+      <h2 class="card-title">Gestión de Restaurantes</h2>
+      <div class="card-tags">
+        <span class="card-tag">Compras</span>
+        <span class="card-tag">Inventarios</span>
+        <span class="card-tag">Escandallos</span>
+        <span class="card-tag">Análisis de Costes</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <div class="meta-item">
+          <p class="meta-label">Duración</p>
+          <p class="meta-value">6 semanas · 18h</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Sesiones</p>
+          <p class="meta-value">2 por semana · 1,5h</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Precio</p>
+          <p class="meta-value">Plaza limitada</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Metodología</p>
+          <p class="meta-value">Teórico-práctica</p>
+        </div>
+      </div>
+
+      <p class="card-modulos-title">Programa semana a semana</p>
+
+      <div class="modulo-item">
+        <span class="modulo-num">S1</span>
+        <span class="modulo-text">Fundamentos de compras y gestión de proveedores</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S2</span>
+        <span class="modulo-text">Introducción a los inventarios y sistemas de registro</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S3</span>
+        <span class="modulo-text">Diferencias de inventario y control interno</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S4</span>
+        <span class="modulo-text">Escandallos y coste de materias primas</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S5</span>
+        <span class="modulo-text">Análisis de costes, rentabilidad y optimización</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S6</span>
+        <span class="modulo-text">Casos prácticos reales y proyecto final de mejora</span>
+      </div>
+
+      <div class="card-cta">
+        <span class="plaza-badge">Plazas limitadas</span>
+        <label class="form-label">Solicita información</label>
+        <form action="https://7f886585.sibforms.com/serve/MUIFAHAjsTVhTapF0qLq-SKvpjR-mku1v8jiN2OOxS8eD8sf5Bg8dzROZ2rlnB02hnnqES4UN_y-tD6bHVZzRS2pNjgFu8KFaoW5ScSmjvHHIo-CrKlNNPiHun4W3jp89o154sXxMddJCv13CBCx7n3bXhsk-Y40jEjAU-seE6fLawPAVtPfjhx14f6r3f_PClHH04DbBKwZqoYEMA==" method="post" target="_blank">
+          <input type="hidden" name="PROGRAMA" value="Gestión de Restaurantes">
+          <input type="text" name="NOMBRE" class="form-field" placeholder="Tu nombre" required>
+          <input type="email" name="EMAIL" class="form-field" placeholder="tu@email.com" required>
+          <button type="submit" class="form-btn">Quiero más información</button>
+        </form>
+        <p class="form-note">Te contactamos en menos de 24 horas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMA 2 -->
+  <div class="programa-card">
+    <div class="card-header gold-variant" data-num="02">
+      <p class="card-num">Programa 02</p>
+      <h2 class="card-title">IA, Marketing Digital y Gestión de Leads</h2>
+      <div class="card-tags">
+        <span class="card-tag">IA aplicada</span>
+        <span class="card-tag">Redes Sociales</span>
+        <span class="card-tag">Marketing Digital</span>
+        <span class="card-tag">CRM & Leads</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <div class="meta-item">
+          <p class="meta-label">Duración</p>
+          <p class="meta-value">8 semanas · 24h</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Sesiones</p>
+          <p class="meta-value">2 por semana · 1,5h</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Precio</p>
+          <p class="meta-value">Plaza limitada</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Metodología</p>
+          <p class="meta-value">Teórico-práctica</p>
+        </div>
+      </div>
+
+      <p class="card-modulos-title">Programa semana a semana</p>
+
+      <div class="modulo-item">
+        <span class="modulo-num">S1</span>
+        <span class="modulo-text">Introducción a la IA y herramientas modernas: Claude, ChatGPT, prompts efectivos</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S2</span>
+        <span class="modulo-text">Marketing digital: estrategia, SEO, SEM y Google Ads</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S3</span>
+        <span class="modulo-text">Redes sociales: estrategia, contenido, Canva, Reels y TikTok</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S4</span>
+        <span class="modulo-text">Publicidad en Meta Ads, LinkedIn Ads y Google Display</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S5</span>
+        <span class="modulo-text">Email marketing, automatización y workflows de nurturing</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S6</span>
+        <span class="modulo-text">CRM: HubSpot/Pipedrive, captura y calificación de leads</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S7</span>
+        <span class="modulo-text">Automatización avanzada: Zapier, Make y chatbots con IA</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">S8</span>
+        <span class="modulo-text">Analítica, KPIs, ROI y proyecto final de estrategia integrada</span>
+      </div>
+
+      <div class="card-cta">
+        <span class="plaza-badge">Plazas limitadas</span>
+        <label class="form-label">Solicita información</label>
+        <form action="https://7f886585.sibforms.com/serve/MUIFAHAjsTVhTapF0qLq-SKvpjR-mku1v8jiN2OOxS8eD8sf5Bg8dzROZ2rlnB02hnnqES4UN_y-tD6bHVZzRS2pNjgFu8KFaoW5ScSmjvHHIo-CrKlNNPiHun4W3jp89o154sXxMddJCv13CBCx7n3bXhsk-Y40jEjAU-seE6fLawPAVtPfjhx14f6r3f_PClHH04DbBKwZqoYEMA==" method="post" target="_blank">
+          <input type="hidden" name="PROGRAMA" value="IA Marketing Digital y Gestion de Leads">
+          <input type="text" name="NOMBRE" class="form-field" placeholder="Tu nombre" required>
+          <input type="email" name="EMAIL" class="form-field" placeholder="tu@email.com" required>
+          <button type="submit" class="form-btn">Quiero más información</button>
+        </form>
+        <p class="form-note">Te contactamos en menos de 24 horas.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PROGRAMA 3 -->
+  <div class="programa-card">
+    <div class="card-header" data-num="03" style="background: linear-gradient(135deg, #2a1a3a 0%, #4a2d6a 100%);">
+      <p class="card-num">Programa 03</p>
+      <h2 class="card-title">Cómo Franquiciar tu Marca</h2>
+      <div class="card-tags">
+        <span class="card-tag">Modelo de franquicia</span>
+        <span class="card-tag">Requisitos legales</span>
+        <span class="card-tag">Contratos</span>
+        <span class="card-tag">Casos de éxito</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <div class="meta-item">
+          <p class="meta-label">Duración</p>
+          <p class="meta-value">3 semanas</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Modalidad</p>
+          <p class="meta-value">Mixta</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Precio</p>
+          <p class="meta-value">Plaza limitada</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Idioma</p>
+          <p class="meta-value">Español</p>
+        </div>
+      </div>
+
+      <p class="card-modulos-title">Contenido del programa</p>
+
+      <div class="modulo-item">
+        <span class="modulo-num">I</span>
+        <span class="modulo-text">Qué es una franquicia y cómo funciona el modelo</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">II</span>
+        <span class="modulo-text">Requisitos legales y societarios para franquiciar</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">III</span>
+        <span class="modulo-text">El contrato de franquicia: cláusulas esenciales</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">IV</span>
+        <span class="modulo-text">Manual de operaciones y estándares de marca</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">V</span>
+        <span class="modulo-text">Modelos de éxito: casos reales analizados</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">VI</span>
+        <span class="modulo-text">Fees, royalties y estructura económica</span>
+      </div>
+      <div class="modulo-item">
+        <span class="modulo-num">VII</span>
+        <span class="modulo-text">Primeros pasos para lanzar tu franquicia</span>
+      </div>
+
+      <div class="card-cta">
+        <span class="plaza-badge">Plazas limitadas</span>
+        <label class="form-label">Solicita información</label>
+        <form action="https://7f886585.sibforms.com/serve/MUIFAHAjsTVhTapF0qLq-SKvpjR-mku1v8jiN2OOxS8eD8sf5Bg8dzROZ2rlnB02hnnqES4UN_y-tD6bHVZzRS2pNjgFu8KFaoW5ScSmjvHHIo-CrKlNNPiHun4W3jp89o154sXxMddJCv13CBCx7n3bXhsk-Y40jEjAU-seE6fLawPAVtPfjhx14f6r3f_PClHH04DbBKwZqoYEMA==" method="post" target="_blank">
+          <input type="hidden" name="PROGRAMA" value="Como Franquiciar tu Marca">
+          <input type="text" name="NOMBRE" class="form-field" placeholder="Tu nombre" required>
+          <input type="email" name="EMAIL" class="form-field" placeholder="tu@email.com" required>
+          <button type="submit" class="form-btn">Quiero más información</button>
+        </form>
+        <p class="form-note">Te contactamos en menos de 24 horas.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="para-quien">
+  <p class="section-label">¿Para quién es esto?</p>
+  <h2 class="section-title">Formación para quien quiere resultados reales</h2>
+  <div class="perfiles">
+    <div class="perfil-item">
+      <div class="perfil-icon">🍽️</div>
+      <p class="perfil-title">Propietarios y gestores</p>
+      <p class="perfil-text">Hosteleros y empresarios que quieren profesionalizar su operativa, reducir costes y mejorar la rentabilidad del negocio.</p>
+    </div>
+    <div class="perfil-item">
+      <div class="perfil-icon">👨‍🍳</div>
+      <p class="perfil-title">Empleados del sector</p>
+      <p class="perfil-text">Trabajadores que quieren ampliar sus competencias, aportar más valor en su puesto y crecer profesionalmente dentro del sector.</p>
+    </div>
+    <div class="perfil-item">
+      <div class="perfil-icon">🌍</div>
+      <p class="perfil-title">Hispanohablantes en el exterior</p>
+      <p class="perfil-text">Profesionales que trabajan o quieren trabajar en mercados internacionales y necesitan dominar la gestión y las herramientas digitales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="metodologia" id="metodologia">
+  <div>
+    <p class="section-label">Metodología</p>
+    <h2 class="section-title">Formación práctica, no teoría vacía</h2>
+    <ul class="metodo-list">
+      <div class="metodo-item">
+        <span class="metodo-num">01</span>
+        <div class="metodo-content">
+          <strong>Clases en directo</strong>
+          <span>Sesiones en vivo con el formador, con espacio para preguntas y casos reales.</span>
+        </div>
+      </div>
+      <div class="metodo-item">
+        <span class="metodo-num">02</span>
+        <div class="metodo-content">
+          <strong>Material descargable</strong>
+          <span>Plantillas, checklists y recursos que puedes aplicar en tu negocio desde el primer día.</span>
+        </div>
+      </div>
+      <div class="metodo-item">
+        <span class="metodo-num">03</span>
+        <div class="metodo-content">
+          <strong>Casos prácticos</strong>
+          <span>Trabajo sobre situaciones reales del sector, no ejercicios de manual.</span>
+        </div>
+      </div>
+      <div class="metodo-item">
+        <span class="metodo-num">04</span>
+        <div class="metodo-content">
+          <strong>Seguimiento post-formación</strong>
+          <span>Acceso al material y soporte durante el periodo de implementación.</span>
+        </div>
+      </div>
+    </ul>
+  </div>
+  <div class="metodo-right">
+    <div class="metodo-stat">
+      <p class="metodo-stat-num">6–8</p>
+      <p class="metodo-stat-label">Semanas de formación intensiva por programa</p>
+    </div>
+    <div class="metodo-stat">
+      <p class="metodo-stat-num">100%</p>
+      <p class="metodo-stat-label">Contenido aplicable desde el primer día</p>
+    </div>
+    <div class="metodo-stat">
+      <p class="metodo-stat-num">ES</p>
+      <p class="metodo-stat-label">Formación íntegramente en español para hispanohablantes</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Nómadas Digitales Academy</span>
+  <ul class="footer-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="mailto:info@nomadasdigitalesacademy.com">info@nomadasdigitalesacademy.com</a></li>
+    <li><a href="#">Aviso legal</a></li>
+    <li><a href="#">Privacidad</a></li>
+  </ul>
+  <span class="footer-legal">© 2025 Grupogre S.L.</span>
+</footer>
+
+</body>
+</html>
